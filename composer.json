@@ -1,0 +1,23 @@
+{
+    "name": "jedun/messend",
+    "description": "Application Messend For Send Message An Other",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Jidan\\Jedun\\Messend\\": "src/jedun/messend/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Feyfa",
+            "email": "fisikamodern00@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "rakit/validation": "^1.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.6.20"
+    }
+}
