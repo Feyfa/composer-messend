@@ -4,6 +4,7 @@ namespace Jidan\Jedun\Messend;
 
 use Exception;
 use Jidan\Jedun\Messend\Email\Email;
+use Jidan\Jedun\Messend\TwoFactoryAuth\TwoFactoryAuth;
 
 class Messend
 {
@@ -12,6 +13,7 @@ class Messend
         switch($name)
         {
             case 'email': return new Email();
+            case 'tfa': return new TwoFactoryAuth();
         }
 
         throw new Exception("Object $name Not Found");
