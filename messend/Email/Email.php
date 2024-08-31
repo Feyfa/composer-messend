@@ -1,6 +1,6 @@
 <?php 
 
-namespace Jidan\Jedun\Messend\Email;
+namespace Messend\Email;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;

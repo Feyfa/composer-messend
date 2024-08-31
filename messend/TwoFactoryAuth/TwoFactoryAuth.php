@@ -1,6 +1,6 @@
 <?php 
 
-namespace Jidan\Jedun\Messend\TwoFactoryAuth;
+namespace Messend\TwoFactoryAuth;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;

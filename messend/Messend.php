@@ -1,10 +1,10 @@
 <?php 
 
-namespace Jidan\Jedun\Messend;
+namespace Messend;
 
 use Exception;
-use Jidan\Jedun\Messend\Email\Email;
-use Jidan\Jedun\Messend\TwoFactoryAuth\TwoFactoryAuth;
+use Messend\Email\Email;
+use Messend\TwoFactoryAuth\TwoFactoryAuth;
 
 class Messend
 {
