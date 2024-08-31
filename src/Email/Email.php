@@ -28,7 +28,7 @@ class Email
         $validation->validate();
 
         if($validation->fails())
-            return ['status' => 'error', 'message' => $validation->errors()->firstOfAll()];
+            return (object) ['status' => 'error', 'message' => $validation->errors()->firstOfAll()];
         /* VALIDATOR */
 
         /** SEND EMAIL */
@@ -46,16 +46,16 @@ class Email
             if ($e->hasResponse()) 
             {
                 $response = json_decode($e->getResponse()->getBody()->getContents());
-                return ['status' => $response->status, 'message' => $response->message];
+                return (object) ['status' => $response->status, 'message' => $response->message];
             } 
             else 
             // Jika tidak ada respons, kembalikan pesan exception
             {
-                return ['status' => 'error', 'message' => $e->getMessage()];
+                return (object) ['status' => 'error', 'message' => $e->getMessage()];
             }
         }
         /** SEND EMAIL */
 
-        return ['status' => $response->status, 'message' => $response->message];
+        return (object) ['status' => $response->status, 'message' => $response->message];
     }
 }

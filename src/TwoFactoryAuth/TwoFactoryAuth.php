@@ -22,7 +22,7 @@ class TwoFactoryAuth
         $validation->validate();
 
         if($validation->fails())
-            return ['status' => 'error', 'message' => $validation->errors()->firstOfAll()];
+            return (object) ['status' => 'error', 'message' => $validation->errors()->firstOfAll()];
         /* VALIDATOR */
 
         /* GENERATE OTP */
@@ -40,17 +40,17 @@ class TwoFactoryAuth
             if ($e->hasResponse()) 
             {
                 $response = json_decode($e->getResponse()->getBody()->getContents());
-                return ['status' => $response->status, 'message' => $response->message];
+                return (object) ['status' => $response->status, 'message' => $response->message];
             } 
             else 
             // Jika tidak ada respons, kembalikan pesan exception
             {
-                return ['status' => 'error', 'message' => $e->getMessage()];
+                return (object) ['status' => 'error', 'message' => $e->getMessage()];
             }
         }
         /* GENERATE OTP */
 
-        return ['status' => $response->status, 'otp_secret_key' => $response->otp_secret_key, 'otp_code' => $response->otp_code, 'contact' => $response->contact];
+        return (object) ['status' => $response->status, 'otp_secret_key' => $response->otp_secret_key, 'otp_code' => $response->otp_code, 'contact' => $response->contact];
     }
 
     public function matchOtp(array $credentials)
@@ -69,7 +69,7 @@ class TwoFactoryAuth
         $validation->validate();
 
         if($validation->fails())
-            return ['status' => 'error', 'message' => $validation->errors()->firstOfAll()];
+            return (object) ['status' => 'error', 'message' => $validation->errors()->firstOfAll()];
         /* VALIDATOR */
 
         /* MATCH OTP */
@@ -83,11 +83,21 @@ class TwoFactoryAuth
         }
         catch (RequestException $e)
         {
-            return ['status' => 'error', 'message' => $e->getMessage()];
+            // Cek apakah ada respons dari server
+            if ($e->hasResponse()) 
+            {
+                $response = json_decode($e->getResponse()->getBody()->getContents());
+                return (object) ['status' => $response->status, 'message' => $response->message];
+            } 
+            else 
+            // Jika tidak ada respons, kembalikan pesan exception
+            {
+                return (object) ['status' => 'error', 'message' => $e->getMessage()];
+            }
         }
         /* MATCH OTP */
 
-        return ['status' => $response->status, 'message' => $response->message];
+        return (object) ['status' => $response->status, 'message' => $response->message];
     }
 }
 
