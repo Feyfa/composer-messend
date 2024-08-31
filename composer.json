@@ -20,5 +20,9 @@
     },
     "require-dev": {
         "phpunit/phpunit": "9.6.20"
+    },
+    "suggest": {
+        "rakit/validation": "Recommended for validation functionality.",
+        "guzzlehttp/guzzle": "Recommended for making HTTP requests."
     }
 }
