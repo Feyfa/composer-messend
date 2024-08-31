@@ -32,15 +32,15 @@ class TwoFactoryAuth
         try
         {
             $response = $client->request('POST', "$domain/api/generate/otp", ['form_params' => $credentials]);
-            $response = json_decode($response->getBody()->getContents(), true);
+            $response = json_decode($response->getBody()->getContents());
         }
         catch (RequestException $e)
         {
             // Cek apakah ada respons dari server
             if ($e->hasResponse()) 
             {
-                $response = json_decode($e->getResponse()->getBody()->getContents(), true);
-                return ['status' => $response['status'], 'message' => $response['message']];
+                $response = json_decode($e->getResponse()->getBody()->getContents());
+                return ['status' => $response->status, 'message' => $response->message];
             } 
             else 
             // Jika tidak ada respons, kembalikan pesan exception
