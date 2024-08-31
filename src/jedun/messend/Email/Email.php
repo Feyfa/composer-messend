@@ -6,8 +6,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Rakit\Validation\Validator;
 
-require_once __DIR__ . "../../../../../vendor/autoload.php";
-
 class Email
 {
     public function send(array $credentials)
