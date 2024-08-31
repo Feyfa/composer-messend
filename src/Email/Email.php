@@ -38,11 +38,21 @@ class Email
         try
         {
             $response = $client->request('POST', "$domain/api/gmail/send", ['form_params' => $credentials]);
-            $response = json_decode($response->getBody()->getContents());
+            $response = json_decode($response->getBody()->getContents(), true);
         }
         catch (RequestException $e)
         {
-            return ['status' => 'error', 'message' => $e->getMessage()];
+            // Cek apakah ada respons dari server
+            if ($e->hasResponse()) 
+            {
+                $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+                return ['status' => $response['status'], 'message' => $response['message']];
+            } 
+            else 
+            // Jika tidak ada respons, kembalikan pesan exception
+            {
+                return ['status' => 'error', 'message' => $e->getMessage()];
+            }
         }
         /** SEND EMAIL */
 
