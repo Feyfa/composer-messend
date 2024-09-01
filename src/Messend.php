@@ -6,6 +6,10 @@ use Exception;
 use Messend\Email\Email;
 use Messend\TwoFactoryAuth\TwoFactoryAuth;
 
+/**
+ * @property-read Email $email
+ * @property-read TwoFactoryAuth $tfa
+ */
 class Messend
 {
     public function __get($name)
