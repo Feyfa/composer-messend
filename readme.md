@@ -1,6 +1,6 @@
 # Messend - Sending Messages with PHP
 
-Messend is a bridge to interact with Gmail that can send messages. Messend can also be used for the Two Factory Auth feature.
+Messend is a bridge to send messages to Gmail, Twilio Whatsapp, Twilio Sms platforms. Messend can also be used for the Two Factory Auth feature.
 
 ## Installation
 
@@ -63,6 +63,50 @@ $result = $messend->tfa->matchOtp([
     'otp_code' => '123456',
     'now' => EPOCH_TIME_NOW
 ]);
+var_dump($result);
+```
+
+## Send Whatsapp
+
+```php
+<?php
+
+use Messend\Messend;
+
+// no need use try catch, because is already handle on library
+$messend = new Messend();
+$result = $messend->twilio->send([
+    'user_secret_key' => 'user_secret_key',
+    'twilio_type' => 'whatsapp',
+    'twilio_sid' => 'twilio_sid',
+    'twilio_auth_token' => 'twilio_auth_token',
+    'twilio_number_from' => '+1234xxxxx',
+    'twilio_number_to' => '+62812xxxxx',
+    'twilio_body' => 'message',
+]);
+
+var_dump($result);
+```
+
+## Send Sms
+
+```php
+<?php
+
+use Messend\Messend;
+
+// no need use try catch, because is already handle on library
+$messend = new Messend();
+$result = $messend->twilio->send([
+    'user_secret_key' => 'user_secret_key',
+    'twilio_type' => 'sms',
+    'twilio_sid' => 'twilio_sid',
+    'twilio_auth_token' => 'twilio_auth_token',
+    'twilio_number_from' => '+1234xxxxx',
+    'twilio_number_to' => '+62812xxxxx',
+    'twilio_body' => 'message',
+]);
+
 var_dump($result);
 ```
 
